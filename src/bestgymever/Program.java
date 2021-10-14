@@ -38,7 +38,7 @@ public class Program {
     }
 
     public static void optionCheckCustomer(){
-        Customer customer = optionGetCustomer();
+        Customer customer = optionGetCustomer(getInput());
 
         if(customer != null){
             customer.printAll();
@@ -48,21 +48,37 @@ public class Program {
     }
 
     public static void optionRegisterVisit(){
-        Customer customer = optionGetCustomer();
+        Customer customer = optionGetCustomer(getInput());
 
-        FileManager.registerVisit(customer);
+        if(customer != null){
+            FileManager.registerVisit(customer);
+            return;
+        }
+        System.out.println("This customer does not exist\n");
     }
 
     public static void optionExit(){
         run = false;
     }
 
-    public static Customer optionGetCustomer(){
+    public static Customer optionGetCustomer(String input){
 
+        input = input.trim();
+        if(input.length() <= 2){
+            return null;
+        }
+        if(input.contains(",")){
+            System.out.println("Please only enter a Social Security Number or a Name\n");
+            return null;
+        }
+
+        return FileManager.checkCustomer(input);
+    }
+
+    public static String getInput(){
         System.out.println("Please enter the Social Security Number or Name");
         System.out.print(">> ");
 
-        String input = uInput.nextLine();
-        return FileManager.checkCustomer(input);
+        return uInput.nextLine();
     }
 }

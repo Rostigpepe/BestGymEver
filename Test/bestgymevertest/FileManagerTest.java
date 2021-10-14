@@ -16,8 +16,8 @@ class FileManagerTest {
         //Testing that the checkcustomer creates a customer from varied inputs
         assertNotNull(FileManager.checkCustomer("Chamade Coriola"));
         assertNotNull(FileManager.checkCustomer("8512021234"));
-        assertNotNull(FileManager.checkCustomer(" Ida Idylle"));
-        assertNotNull(FileManager.checkCustomer("8906138493, Ida Idylle"));
+        assertNull(FileManager.checkCustomer(" Ida Idylle"));
+        assertNull(FileManager.checkCustomer("8906138493, Ida Idylle"));
 
         //Creating customers to test assertequals on;
         LocalDate date = Administration.buildDate("2018-01-09");

@@ -14,16 +14,21 @@ public class FileManager {
         try(BufferedReader reader = new BufferedReader(new FileReader("resources/customers.txt"))){
             while((tempLine = reader.readLine()) != null){
 
+                //Splitting the ssn and name apart, assigning them to separate Strings
+                String[] splitLine = tempLine.split(",");
+                //If the array is smaller than two, we're on a line with a date
+                if(splitLine.length < 2){
+                    continue;
+                }
+
+                //Variables for creating a customer
+                //Since the ssn always comes before the name, we can assume that index 0 will be ssn etc
+                String ssn = splitLine[0];
+                String name = splitLine[1].trim();
+
+
                 //Instead of separating name and ssn, I check if the line contains what we're looking for instead.
-                if(tempLine.contains(input)){
-
-                    //Splitting the ssn and name apart, assigning them to separate Strings
-                    String[] splitLine = tempLine.split(",");
-
-                    //Variables for creating a customer
-                    //Since the ssn always comes before the name, we can assume that index 0 will be ssn etc
-                    String ssn = splitLine[0];
-                    String name = splitLine[1].trim();
+                if(input.equals(ssn) || input.equals(name)){
 
                     //Now we need the date, I'll use a method created in Administration to accomplish this
                     tempLine = reader.readLine();
