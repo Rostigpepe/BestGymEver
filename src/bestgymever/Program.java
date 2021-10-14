@@ -68,7 +68,7 @@ public class Program {
             return null;
         }
         if(input.contains(",")){
-            System.out.println("Please only enter a Social Security Number or a Name\n");
+            System.out.println("Please only enter a Social Security Number or a Name");
             return null;
         }
 
