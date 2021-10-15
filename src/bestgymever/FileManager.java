@@ -51,7 +51,7 @@ public class FileManager {
     }
 
     public static void registerVisit(Customer customer){
-
+        //If the customer has not even paid within a year, we wont register their visit
         if(Administration.hasPaidWithinYear(customer)){
             //Add ", true" after file path if you don't want to overwrite
             try(BufferedWriter writer = new BufferedWriter(new FileWriter("resources/customerVisit.txt"))){
